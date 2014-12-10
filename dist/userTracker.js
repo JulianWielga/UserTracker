@@ -71,19 +71,14 @@ angular.module('touk.userTracking.directive', ['touk.userTracking.DataCollector'
 ]);
 
 'Use strict';
-angular.module('touk.userTracking', ['touk.userTracking.DataCollector', 'touk.userTracking.directive']).factory('TrackingDataResource', [
-  '$resource', function($resource) {
-    return $resource('asdasds');
-  }
-]).config([
-  'TrackingDataCollectorProvider', function(provider) {
-    provider.setSaverDependency('TrackingDataResource');
-    return provider.setSaverFn('save');
-  }
-]);
+angular.module('touk.userTracking', ['touk.userTracking.DataCollector', 'touk.userTracking.directive']);
 
 'Use strict';
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+if (this.UserTracking == null) {
+  this.UserTracking = {};
+}
 
 UserTracking.DataCollector = (function() {
   DataCollector.prototype.INTERVAL = 3000;
@@ -241,7 +236,11 @@ UserTracking.Field = (function() {
 })();
 
 'Use strict';
-UserTracking.FieldDTO = (function() {
+if (this.UserTracking == null) {
+  this.UserTracking = {};
+}
+
+this.UserTracking.FieldDTO = (function() {
   function FieldDTO(pole, strona, formularz) {
     this.pole = pole;
     this.strona = strona;

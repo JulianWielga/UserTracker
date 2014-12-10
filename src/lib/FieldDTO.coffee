@@ -1,6 +1,8 @@
 'Use strict'
 
-class UserTracking.FieldDTO
+@UserTracking ?= {}
+
+class @UserTracking.FieldDTO
 	constructor: (@pole, @strona, @formularz) ->
 		@pole ?= null
 		@strona ?= null

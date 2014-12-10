@@ -1,5 +1,7 @@
 'Use strict'
 
+@UserTracking ?= {}
+
 class UserTracking.DataCollector
 	INTERVAL: 3000
 
