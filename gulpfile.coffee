@@ -20,6 +20,6 @@ gulp = require 'gulp'
 
 .task "scripts", ['clean'], ->
 	gulp.src("src/**/*.coffee")
-	.pipe coffee(bare: true).on("error", gutil.log)
+	.pipe coffee().on("error", gutil.log)
 	.pipe concat('userTracker.js')
 	.pipe gulp.dest('dist')

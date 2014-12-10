@@ -1,6 +1,8 @@
 'Use strict'
 
-class UserTracking.Field
+@UserTracking ?= {}
+
+class @UserTracking.Field
 	INTERVAL: 200
 
 	constructor: (@pole, @strona, @formularz) ->

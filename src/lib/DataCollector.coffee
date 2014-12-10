@@ -2,7 +2,7 @@
 
 @UserTracking ?= {}
 
-class UserTracking.DataCollector
+class @UserTracking.DataCollector
 	INTERVAL: 3000
 
 	constructor: (@saver) ->

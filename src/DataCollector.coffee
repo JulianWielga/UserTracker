@@ -15,5 +15,5 @@ angular.module 'touk.userTracking.DataCollector', []
 	$get: ['$injector', ($injector) ->
 		if dependency and saveFn
 			saver = $injector.get(dependency)?[saveFn]
-		new UserTracking.DataCollector(saver)
+		new UserTracking?.DataCollector(saver)
 	]
