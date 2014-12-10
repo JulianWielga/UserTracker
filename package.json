@@ -1,0 +1,26 @@
+{
+  "name": "UserTracker",
+  "version": "0.9.0",
+  "description": "Logs user actions in form inputs",
+  "main": "module.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tracking",
+    "angular"
+  ],
+  "scripts": {
+    "postinstall": "gulp"
+  },
+  "author": "Julian Wielga",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "gulp": "~3.8.10",
+    "coffee-script": "~1.8.0",
+    "gulp-coffee": "~2.2.0",
+    "gulp-util": "~3.0.1",
+    "del": "~1.1.0",
+    "gulp-concat": "~2.4.2"
+  }
+}
