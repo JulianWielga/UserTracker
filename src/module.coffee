@@ -5,13 +5,15 @@ angular.module 'touk.userTracking', [
 	'touk.userTracking.directive'
 ]
 
-.factory 'TrackingDataResource', [
-	'$resource'
-	($resource) ->
-		$resource 'asdasds'
-]
+# EXAMPLE RESOURCE
+# .factory 'TrackingDataResource', [
+# 	'$resource'
+# 	($resource) ->
+# 		$resource 'something'
+# ]
 
-.config ['TrackingDataCollectorProvider', (provider) ->
-	provider.setSaverDependency 'TrackingDataResource'
-	provider.setSaverFn 'save'
-]
+# EXAMPLE CONFIG
+# .config ['TrackingDataCollectorProvider', (provider) ->
+# 	provider.setSaverDependency 'TrackingDataResource'
+# 	provider.setSaverFn 'save'
+# ]

@@ -2,7 +2,6 @@
   "name": "UserTracker",
   "version": "0.9.0",
   "description": "Logs user actions in form inputs",
-  "main": "module.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
