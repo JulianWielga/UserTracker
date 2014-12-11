@@ -5,7 +5,7 @@
 class @UserTracking.DataCollector
 	INTERVAL: 3000
 
-	constructor: (@saver) ->
+	constructor: (@saver, @INTERVAL) ->
 		@fields = {}
 		@init()
 

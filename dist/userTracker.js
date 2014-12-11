@@ -3,13 +3,15 @@
   var DataCollector;
 
   angular.module('touk.userTracking.DataCollector', []).provider('TrackingDataCollector', DataCollector = (function() {
-    var dependency, saveFn;
+    var dependency, saveFn, saveInterval;
 
     function DataCollector() {}
 
     dependency = null;
 
     saveFn = null;
+
+    saveInterval = 3000;
 
     DataCollector.prototype.setSaverDependency = function(name) {
       return dependency = name;
@@ -19,13 +21,17 @@
       return saveFn = name;
     };
 
+    DataCollector.prototype.setSaverInterval = function(interval) {
+      return saveInterval = interval;
+    };
+
     DataCollector.prototype.$get = [
       '$injector', function($injector) {
         var saver, _ref;
         if (dependency && saveFn) {
           saver = (_ref = $injector.get(dependency)) != null ? _ref[saveFn] : void 0;
         }
-        return typeof UserTracking !== "undefined" && UserTracking !== null ? new UserTracking.DataCollector(saver) : void 0;
+        return typeof UserTracking !== "undefined" && UserTracking !== null ? new UserTracking.DataCollector(saver, saveInterval) : void 0;
       }
     ];
 
@@ -93,8 +99,9 @@
   this.UserTracking.DataCollector = (function() {
     DataCollector.prototype.INTERVAL = 3000;
 
-    function DataCollector(saver) {
+    function DataCollector(saver, INTERVAL) {
       this.saver = saver;
+      this.INTERVAL = INTERVAL;
       this.save = __bind(this.save, this);
       this.get = __bind(this.get, this);
       this.create = __bind(this.create, this);
