@@ -35,4 +35,7 @@ angular.module 'touk.userTracking.directive', [
 				valueGetter = -> angular.element(event.target).val()
 				tracker.checkValueChange valueGetter
 
+			scope.$on '$destroy', ->
+				collector.destroy trackerOptions
+
 ]

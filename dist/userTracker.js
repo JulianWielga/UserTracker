@@ -67,13 +67,16 @@
             tracker = trackerGetter();
             return (typeof tracker[_name = event.type] === "function" ? tracker[_name]() : void 0) || tracker.event(event.type);
           });
-          return element.on('keydown', function(event) {
+          element.on('keydown', function(event) {
             var tracker, valueGetter;
             tracker = trackerGetter();
             valueGetter = function() {
               return angular.element(event.target).val();
             };
             return tracker.checkValueChange(valueGetter);
+          });
+          return scope.$on('$destroy', function() {
+            return collector.destroy(trackerOptions);
           });
         }
       };
@@ -103,6 +106,7 @@
       this.saver = saver;
       this.INTERVAL = INTERVAL;
       this.save = __bind(this.save, this);
+      this.destroy = __bind(this.destroy, this);
       this.get = __bind(this.get, this);
       this.create = __bind(this.create, this);
       this.init = __bind(this.init, this);
@@ -125,18 +129,22 @@
       return setTimeout(this.save, this.INTERVAL);
     };
 
-    DataCollector.prototype.create = function(tracker) {
+    DataCollector.prototype.create = function(trackerOpts) {
       var field;
-      if (tracker == null) {
-        tracker = {};
+      if (trackerOpts == null) {
+        trackerOpts = {};
       }
-      field = new UserTracking.Field(tracker.fieldName, tracker.pageName, tracker.formName);
+      field = new UserTracking.Field(trackerOpts.fieldName, trackerOpts.pageName, trackerOpts.formName);
       this.data.push(field.data);
-      return this.fields[tracker.id] = field;
+      return this.fields[trackerOpts.id] = field;
     };
 
-    DataCollector.prototype.get = function(tracker) {
-      return this.fields[tracker.id] || this.create(tracker);
+    DataCollector.prototype.get = function(trackerOpts) {
+      return this.fields[trackerOpts.id] || this.create(trackerOpts);
+    };
+
+    DataCollector.prototype.destroy = function(trackerOpts) {
+      return delete this.fields[trackerOpts.id];
     };
 
     DataCollector.prototype.save = function() {
