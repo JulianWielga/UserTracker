@@ -167,7 +167,6 @@
       this.pole = pole;
       this.strona = strona;
       this.formularz = formularz;
-      this.test = __bind(this.test, this);
       this.countChars = __bind(this.countChars, this);
       this.checkValueChange = __bind(this.checkValueChange, this);
       this.updateFocusTimer = __bind(this.updateFocusTimer, this);
@@ -206,8 +205,7 @@
       if ((_base = this.data.zdarzenia)[type] == null) {
         _base[type] = 0;
       }
-      this.data.zdarzenia[type]++;
-      return this.test();
+      return this.data.zdarzenia[type]++;
     };
 
     Field.prototype.updateFocusTimer = function() {
@@ -249,10 +247,6 @@
       if (diff > 0) {
         return this.data.wpisanychMalychZnakow++;
       }
-    };
-
-    Field.prototype.test = function() {
-      return console.log(angular.toJson(this.data));
     };
 
     return Field;

@@ -27,7 +27,6 @@ class @UserTracking.Field
 	event: (type) =>
 		@data.zdarzenia[type] ?= 0
 		@data.zdarzenia[type]++
-		@test()
 
 	updateFocusTimer: => if @lastFocus
 		time = new Date().getTime()
@@ -53,6 +52,3 @@ class @UserTracking.Field
 		re = /[a-ząćęłńóśźżéöüßčďéěíňóřšťúžýůàâæçèéêëîïôùûü]/g
 		diff = (newValue.match(re)?.length or 0) - (oldValue.match(re)?.length or 0)
 		@data.wpisanychMalychZnakow++ if diff > 0
-
-	test: =>
-		console.log angular.toJson(@data)
