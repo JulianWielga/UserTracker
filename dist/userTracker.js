@@ -148,8 +148,10 @@
     };
 
     DataCollector.prototype.save = function() {
-      if (typeof this.saver === "function") {
-        this.saver(this.data);
+      if (this.data.length) {
+        if (typeof this.saver === "function") {
+          this.saver(this.data);
+        }
       }
       return this.init();
     };
