@@ -25,5 +25,5 @@ class @UserTracking.DataCollector
 		delete @fields[trackerOpts.id]
 
 	save: =>
-		@saver?(@data)
+		@saver?(@data) if @data.length
 		@init()
