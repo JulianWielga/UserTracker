@@ -106,6 +106,7 @@
       this.saver = saver;
       this.INTERVAL = INTERVAL;
       this.save = __bind(this.save, this);
+      this.hasValues = __bind(this.hasValues, this);
       this.destroy = __bind(this.destroy, this);
       this.get = __bind(this.get, this);
       this.create = __bind(this.create, this);
@@ -147,8 +148,31 @@
       return delete this.fields[trackerOpts.id];
     };
 
+    DataCollector.prototype.hasValues = function() {
+      var el, field, value, _i, _len, _ref;
+      _ref = this.data;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        for (field in el) {
+          value = el[field];
+          if (!isNaN(value) && value) {
+            return true;
+          }
+          if (value instanceof Object) {
+            for (field in value) {
+              value = value[field];
+              if (!isNaN(value) && value) {
+                return true;
+              }
+            }
+          }
+        }
+      }
+      return false;
+    };
+
     DataCollector.prototype.save = function() {
-      if (this.data.length) {
+      if (this.data.length && this.hasValues()) {
         if (typeof this.saver === "function") {
           this.saver(this.data);
         }

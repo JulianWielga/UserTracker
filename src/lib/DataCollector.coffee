@@ -24,6 +24,17 @@ class @UserTracking.DataCollector
 	destroy: (trackerOpts) =>
 		delete @fields[trackerOpts.id]
 
+	hasRelevantValues: =>
+		for el in @data
+			for field, value of el
+				if not isNaN(value) and value
+					return yes
+				if value instanceof Object
+					for field, value of value
+						if not isNaN(value) and value
+							return yes
+		return false
+
 	save: =>
-		@saver?(@data) if @data.length
+		@saver?(@data) if @data.length and @hasRelevantValues()
 		@init()
